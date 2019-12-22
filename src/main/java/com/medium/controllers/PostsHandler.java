@@ -58,7 +58,7 @@ public class PostsHandler {
     @RequestMapping(value = "/update/{id}")
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
         PostsService.updatePost(id, title, content);
-        return "redirect:/";
+        return "redirect:/posts/{id}";
     }
 
 }
