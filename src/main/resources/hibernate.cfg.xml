@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="connection.url">jdbc:postgresql://localhost:5432/medium</property> <!-- BD Mane -->
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.username">postgres</property> <!-- DB User -->
+        <property name="connection.password">123456</property> <!-- DB Password -->
+<!--        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> &lt;!&ndash; DB Dialect &ndash;&gt;-->
+<!--        <property name="hbm2ddl.auto">update</property> &lt;!&ndash; create / create-drop / update &ndash;&gt;-->
+
+    </session-factory>
+</hibernate-configuration>

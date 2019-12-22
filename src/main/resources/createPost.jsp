@@ -14,11 +14,18 @@
 </head>
 <body>
 
+    <h1>Add post</h1>
 
-    <h1>Posts</h1>
-    <c:forEach items="${allPosts}" var="lists">
-        <h3><span>${lists.id} </span>${lists.title}</h3>
-        <p>${lists.content}</p>
-    </c:forEach>
+    <form action="addPost">
+        <label for="title">
+            <input id="title" type="text" name="title" required>
+        </label>
+        <label for="content">
+            <input id="content" type="text" name="content" required>
+        </label>
+        <input type="submit" value="Publish">
+    </form>
+
 </body>
 </html>
+
