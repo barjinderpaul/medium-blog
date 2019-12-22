@@ -1,0 +1,206 @@
+.nav-item {
+    font-size: 1.5rem;
+    padding: 0.2rem;
+}
+
+ul li a {
+    border-bottom: 2px blue solid;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+ul li a p {
+    font-size: 1rem;
+    color: #0d3ab3;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.btn {
+    background-color: #0d3ab3;
+    color: white;
+    letter-spacing: 0.2rem;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.login-btn {
+    border-bottom: 0;
+}
+
+.navbar {
+    align-items: center;
+}
+
+
+.bg-image {
+    background-image: url("https://res.cloudinary.com/finzy/image/upload/Final1_oogh7d");
+    background-repeat: repeat;
+    min-height: 650px;
+
+}
+
+.loan-heading {
+    color: white;
+    align-self: center;
+}
+
+.apply-loan-div {
+    background-color: #E8E8E7;
+    color: black;
+    min-width: 80%;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.color-class {
+    color: white;
+    border: 2px solid black;
+}
+
+.apply-loan-div-column{
+    min-height: 90%;
+    padding: 2rem;
+}
+
+
+.apply-loan-div-input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: grey;
+    width:  13vw;
+    height: 4vh;
+    margin-top: 1rem;
+}
+
+.custom-dropdown {
+    color: black;
+    background-color: white;
+    width: 13vw;
+    height: 4vh;
+    margin-top: -1.5rem;
+    border: 0;
+}
+
+
+.apply-loan-div-input:focus {
+    border-color: navy;
+}
+
+.apply-loan-div-label {
+    color: #0d3ab3;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.dropdown {
+    color: black;
+}
+
+.apply-loan-div-button {
+    background-color: #0d3ab3;
+    color: white;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    margin-top: 2.2rem;
+}
+
+
+body,html {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.random {
+    color: white;
+}
+
+.how-finzy-works h1 {
+    margin-top: 3rem;
+    color: #0d3ab3;
+}
+
+.how-finzy-works-description {
+    font-size: 1.2rem;
+}
+
+
+
+.how-finzy-works-image-div {
+    /*background-color: lightblue;*/
+    /*border: 1rem solid lightblue;*/
+    border-radius: 300px;
+    text-align: center;
+    padding: 1rem;
+
+}
+
+.img-size {
+    width: 270px;
+    height: 270px;
+    margin-left: 40rem;
+}
+
+#why-borrow-with-finzy {
+    background-image: linear-gradient(119deg,#1e88f5,#0d3ab3);
+    color: white;
+}
+#why-borrow-with-finzy .why-borrow-with-finzy-h1 {
+    color: white;
+}
+
+.carousel-item-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /*padding: 0rem 11rem;*/
+
+}
+
+.carousel-item-flex button {
+    background-color: rgba(80, 226, 193, .49);
+    color: white;
+    border: 1px solid #3cdabf;
+    border-radius: 5rem;
+    width: 50%;
+    height: 5vh;
+}
+
+.carousel-item-content-flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 30%;
+}
+
+
+
+.carousel-item-content-flex h1 {
+    color: white;
+}
+
+.carousel-item {
+    margin-bottom: 2rem;
+}
+.core-team h1 {
+    margin-top: 3rem;
+    color: #0d3ab3;
+}
+
+.core-team-description {
+    font-size: 1.2rem;
+}
+.card {
+    border: 0;
+}
+.card-body {
+    background-color:  #FCFCFC;
+}
+
+
+@media screen and (max-width: 720px) {
+
+}

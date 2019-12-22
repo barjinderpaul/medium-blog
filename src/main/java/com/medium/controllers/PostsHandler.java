@@ -28,7 +28,7 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/addPost")
     public String addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
         PostsService.addPost(title, content);
@@ -46,17 +46,18 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "delete/deletes/{id}")
     public String deletePost(@PathVariable("id") Long id){
-
+        System.out.println("DELETEDDDDDDDDDDDDd");
         PostsService.deletePost(id);
 
         return  "redirect:/";
 
     }
 
-    @RequestMapping(value = "/update/{id}")
+    @RequestMapping(value = "update/updates/{id}")
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
+        System.out.println("In posts handler ======== saving post =  === " );
         PostsService.updatePost(id, title, content);
         return "redirect:/posts/{id}";
     }

@@ -78,7 +78,7 @@ public class PostsService {
         Posts post = session.get(Posts.class,id);
         post.setTitle(title);
         post.setContent(content);
-
+        session.merge(post);
         t.commit();
         session.close();
 
