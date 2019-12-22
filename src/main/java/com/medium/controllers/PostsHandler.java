@@ -32,7 +32,6 @@ public class PostsHandler {
     public String addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
         PostsService.addPost(title, content);
-
         return "redirect:/";
     }
 
