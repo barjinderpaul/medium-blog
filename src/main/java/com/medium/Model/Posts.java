@@ -8,7 +8,7 @@ public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", updatable = false, nullable = false)
-    private Long id;
+    public Long id;
     public String title;
     public String content;
 

@@ -17,8 +17,7 @@ public class PostsService {
     public static List<Posts> getAllPosts(){
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
-        List<Posts> allPosts = session.createQuery("SELECT a FROM com.medium.Model.Posts a", Posts.class).getResultList();
-
+        List<Posts> allPosts = session.createQuery("FROM com.medium.Model.Posts post ORDER BY post.id asc ").getResultList();
         t.commit();
         session.close();
 

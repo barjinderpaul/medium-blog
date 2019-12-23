@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class PostsHandler {
+public class PostsController {
     @RequestMapping(value = {"/","/posts"}, method= RequestMethod.GET)
     public ModelAndView getBlogPosts(){
 
