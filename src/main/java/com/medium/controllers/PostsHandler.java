@@ -52,18 +52,21 @@ public class PostsHandler {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("singlePost");
         modelAndView.addObject("post",post);
+
         return modelAndView;
     }
 
     @RequestMapping(value = "delete/deletes/{id}")
-    public String deletePost(@PathVariable("id") Long id){
+    public String deletePost(@PathVariable("id") Long id) {
+
         PostsService.deletePost(id);
-        return  "redirect:/";
+        return "redirect:/";
 
     }
 
     @RequestMapping(value = "update/updates/{id}")
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
+
         PostsService.updatePost(id, title, content);
         return "redirect:/posts/{id}";
     }

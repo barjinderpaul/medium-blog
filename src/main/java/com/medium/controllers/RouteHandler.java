@@ -18,9 +18,11 @@ public class RouteHandler {
     @RequestMapping(value = "/add")
     public ModelAndView redirectToCreatePost(){
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("createPost");
         modelAndView.addObject("heading","Add Post");
         modelAndView.addObject("customAction","addPost");
+
         return modelAndView;
     }
 
@@ -34,6 +36,7 @@ public class RouteHandler {
 
 
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("createPost");
         modelAndView.addObject("heading","Update Post");
         modelAndView.addObject("customAction","updatePost");
@@ -41,7 +44,6 @@ public class RouteHandler {
         modelAndView.addObject("id",postId);
         modelAndView.addObject("content",content);
         modelAndView.addObject("title",title);
-
 
         return modelAndView;
     }
@@ -54,7 +56,6 @@ public class RouteHandler {
         String content = post.getContent();
         String title = post.getTitle();
 
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("deletePost");
         modelAndView.addObject("customAction","addPost");
@@ -65,8 +66,4 @@ public class RouteHandler {
 
         return modelAndView;
     }
-
-
-
-
 }

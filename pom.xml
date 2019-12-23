@@ -71,12 +71,6 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
-<!--    <dependency>-->
-<!--      <groupId>org.glassfish.jaxb</groupId>-->
-<!--      <artifactId>jaxb-runtime</artifactId>-->
-<!--    </dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
