@@ -1,10 +1,8 @@
 package com.medium.controllers;
 
-import com.medium.Model.Posts;
+import com.medium.Model.Post;
 import com.medium.services.PostsService;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +16,7 @@ public class PostsController {
     @RequestMapping(value = {"/","/posts"}, method= RequestMethod.GET)
     public ModelAndView getBlogPosts(){
 
-       List<Posts> allPosts = PostsService.getAllPosts();
+       List<Post> allPosts = PostsService.getAllPosts();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("blogPosts");
@@ -58,7 +56,7 @@ public class PostsController {
     @RequestMapping(value = "posts/{id}",method = RequestMethod.GET)
     public ModelAndView getPost(@PathVariable("id") Long id) {
 
-        Posts post = PostsService.getPost(id);
+        Post post = PostsService.getPost(id);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("singlePost");
@@ -72,7 +70,7 @@ public class PostsController {
     public ModelAndView redirectToDeletePage(@PathVariable("id") String id){
         Long postId = Long.parseLong(id);
 
-        Posts post = PostsService.getPost(postId);
+        Post post = PostsService.getPost(postId);
         String content = post.getContent();
         String title = post.getTitle();
 
@@ -97,7 +95,7 @@ public class PostsController {
     public ModelAndView redirectToUpdatePost( @PathVariable("id") String id) {
         Long postId = Long.parseLong(id);
 
-        Posts post = PostsService.getPost(postId);
+        Post post = PostsService.getPost(postId);
         String content = post.getContent();
         String title = post.getTitle();
 

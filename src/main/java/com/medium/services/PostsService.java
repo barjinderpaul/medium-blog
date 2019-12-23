@@ -1,6 +1,6 @@
 package com.medium.services;
 
-import com.medium.Model.Posts;
+import com.medium.Model.Post;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,24 +11,24 @@ import java.util.List;
 
 public class PostsService {
 
-    static Configuration configuration = new Configuration().configure().addAnnotatedClass(Posts.class);
+    static Configuration configuration = new Configuration().configure().addAnnotatedClass(Post.class);
     static SessionFactory sessionFactory = configuration.buildSessionFactory();
 
-    public static List<Posts> getAllPosts(){
+    public static List<Post> getAllPosts(){
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
-        List<Posts> allPosts = session.createQuery("FROM com.medium.Model.Posts post ORDER BY post.id asc ").getResultList();
+        List<Post> allPosts = session.createQuery("FROM com.medium.Model.Post post ORDER BY post.id asc ").getResultList();
         t.commit();
         session.close();
 
         return allPosts;
     }
 
-    public static Posts getPost(Long id) {
+    public static Post getPost(Long id) {
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        Posts post = session.get(Posts.class,id);
+        Post post = session.get(Post.class,id);
 
         t.commit();
         session.close();
@@ -42,7 +42,7 @@ public class PostsService {
 
         Long post_id ;
 
-        Posts post = new Posts();
+        Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
 
@@ -61,7 +61,7 @@ public class PostsService {
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        Posts post = session.load(Posts.class, id);
+        Post post = session.load(Post.class, id);
         session.delete(post);
 
         t.commit();
@@ -73,7 +73,7 @@ public class PostsService {
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        Posts post = session.get(Posts.class,id);
+        Post post = session.get(Post.class,id);
 
         post.setTitle(title);
         post.setContent(content);

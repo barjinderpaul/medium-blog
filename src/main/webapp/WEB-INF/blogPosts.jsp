@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<%@ page import="com.medium.Model.Posts" %>
+<%@ page import="com.medium.Model.Post" %>
 <%@ page import="java.util.Arrays" %><%--
   Created by IntelliJ IDEA.
   User: barjinder
