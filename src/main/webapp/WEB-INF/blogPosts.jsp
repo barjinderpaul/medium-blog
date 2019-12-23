@@ -48,6 +48,7 @@
     </div>
 </nav>
 <br>
+<div class="container">
     <h1>Welcome to Blog</h1>
     <br>
     <c:forEach items="${allPosts}" var="list">
@@ -70,7 +71,7 @@
         <hr>
         <br>
     </c:forEach>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

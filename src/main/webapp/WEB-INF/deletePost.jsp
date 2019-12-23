@@ -44,7 +44,7 @@
         </ul>
     </div>
 </nav>
-
+<div class="container">
 <form action="/medium/posts/delete/${id}", method="POST">
     <div class="form-group">
         <label for="title">Title</label>
@@ -52,13 +52,13 @@
                 value="${title}" disabled >
     </div>
     <div class="md-form">
-        <label for="content">Enter content</label>
+        <label for="content">Content</label>
         <textarea id="content" class="md-textarea form-control" rows="10" name="content" required disabled>${content}</textarea>
     </div>
     <br>
     <input class="btn btn-danger" type="submit" value="Delete Post? You sure?">
 </form>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

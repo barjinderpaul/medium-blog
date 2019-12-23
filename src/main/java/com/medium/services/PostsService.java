@@ -61,7 +61,7 @@ public class PostsService {
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        Post post = session.load(Post.class, id);
+        Post post = session.get(Post.class, id);
         session.delete(post);
 
         t.commit();
