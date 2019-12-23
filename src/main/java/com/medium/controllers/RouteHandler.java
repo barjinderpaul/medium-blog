@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class RouteHandler {
 
 
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "posts/add")
     public ModelAndView redirectToCreatePost(){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -26,7 +27,7 @@ public class RouteHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/update/{id}")
+    @RequestMapping(value = "posts/update/{id}")
     public ModelAndView redirectToUpdatePost( @PathVariable("id") String id) {
         Long postId = Long.parseLong(id);
 
@@ -48,7 +49,7 @@ public class RouteHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "posts/delete/{id}")
     public ModelAndView redirectToDeletePage(@PathVariable("id") String id){
         Long postId = Long.parseLong(id);
 

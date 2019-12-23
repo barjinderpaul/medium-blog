@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/medium/add">
+                <a class="nav-link" href="/medium/posts/add">
                     <p>Create Post</p>
                 </a>
             </li>

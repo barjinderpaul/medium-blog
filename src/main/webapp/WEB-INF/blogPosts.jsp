@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="add">
+                <a class="nav-link" href="posts/add">
                     <p>Create Post</p>
                 </a>
             </li>
@@ -63,8 +63,8 @@
                     </c:choose>
                 </p>
                 <a href="posts/${list.id}" class="btn btn-primary">Read More</a>
-                <a href="update/${list.id}" class="btn btn-warning">Edit Post</a>
-                <a href="delete/${list.id}" class="btn btn-danger">Delete Post</a>
+                <a href="posts/update/${list.id}" class="btn btn-warning">Edit Post</a>
+                <a href="posts/delete/${list.id}" class="btn btn-danger">Delete Post</a>
             </div>
         </div>
         <hr>

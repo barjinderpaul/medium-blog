@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/medium/posts/add">
                     <p>Create Post</p>
                 </a>
             </li>
@@ -55,7 +55,7 @@
 </c:if>
 
 <form action= "<c:choose>
-    <c:when test="${customAction == 'addPost'}">
+    <c:when test="${customAction == 'addPost' || customAction == 'postCreated'}">
         addPost
     </c:when>
     <c:otherwise>

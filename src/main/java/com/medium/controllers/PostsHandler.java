@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class PostsHandler {
-    @RequestMapping(value = "/", method= RequestMethod.GET)
+    @RequestMapping(value = {"/","/posts"}, method= RequestMethod.GET)
     public ModelAndView getBlogPosts(){
 
        List<Posts> allPosts = PostsService.getAllPosts();
@@ -28,7 +28,7 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping("/addPost")
+    @RequestMapping(value = "posts/addPost",method = RequestMethod.POST)
     public ModelAndView addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
         Long post_id = PostsService.addPost(title, content);
@@ -44,7 +44,7 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/posts/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "posts/{id}",method = RequestMethod.GET)
     public ModelAndView getPost(@PathVariable("id") Long id) {
 
         Posts post = PostsService.getPost(id);
@@ -56,7 +56,7 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "delete/deletes/{id}")
+    @RequestMapping(value = "posts/delete/deletes/{id}")
     public String deletePost(@PathVariable("id") Long id) {
 
         PostsService.deletePost(id);
@@ -64,7 +64,7 @@ public class PostsHandler {
 
     }
 
-    @RequestMapping(value = "update/updates/{id}")
+    @RequestMapping(value = "posts/update/updates/{id}")
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
 
         PostsService.updatePost(id, title, content);
