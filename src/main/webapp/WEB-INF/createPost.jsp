@@ -56,10 +56,10 @@
 
 <form action= "<c:choose>
     <c:when test="${customAction == 'addPost' || customAction == 'postCreated'}">
-        addPost
+        add
     </c:when>
     <c:otherwise>
-        ./updates/${id}
+        /medium/posts/update/${id}
     </c:otherwise>
 </c:choose>"
 method="post">

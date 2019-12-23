@@ -28,7 +28,18 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "posts/addPost",method = RequestMethod.POST)
+    @RequestMapping(value = "posts/add",method = RequestMethod.GET)
+    public ModelAndView redirectToCreatePost(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("createPost");
+        modelAndView.addObject("heading","Add Post");
+        modelAndView.addObject("customAction","addPost");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "posts/add",method = RequestMethod.POST)
     public ModelAndView addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
         Long post_id = PostsService.addPost(title, content);
@@ -56,15 +67,53 @@ public class PostsHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "posts/delete/deletes/{id}")
-    public String deletePost(@PathVariable("id") Long id) {
 
+    @RequestMapping(value = "posts/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView redirectToDeletePage(@PathVariable("id") String id){
+        Long postId = Long.parseLong(id);
+
+        Posts post = PostsService.getPost(postId);
+        String content = post.getContent();
+        String title = post.getTitle();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("deletePost");
+        modelAndView.addObject("customAction","addPost");
+        modelAndView.addObject("id",postId);
+        modelAndView.addObject("content",content);
+        modelAndView.addObject("title",title);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "posts/delete/{id}",method = RequestMethod.POST)
+    public String deletePost(@PathVariable("id") Long id) {
         PostsService.deletePost(id);
         return "redirect:/";
 
     }
 
-    @RequestMapping(value = "posts/update/updates/{id}")
+    @RequestMapping(value = "posts/update/{id}" ,method = RequestMethod.GET)
+    public ModelAndView redirectToUpdatePost( @PathVariable("id") String id) {
+        Long postId = Long.parseLong(id);
+
+        Posts post = PostsService.getPost(postId);
+        String content = post.getContent();
+        String title = post.getTitle();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("createPost");
+        modelAndView.addObject("heading","Update Post");
+        modelAndView.addObject("customAction","updatePost");
+        modelAndView.addObject("content","some-sample-content");
+        modelAndView.addObject("id",postId);
+        modelAndView.addObject("content",content);
+        modelAndView.addObject("title",title);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "posts/update/{id}",method = RequestMethod.POST)
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
 
         PostsService.updatePost(id, title, content);

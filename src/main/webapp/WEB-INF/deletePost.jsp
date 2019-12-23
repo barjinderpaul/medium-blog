@@ -45,7 +45,7 @@
     </div>
 </nav>
 
-<form action="./deletes/${id}">
+<form action="/medium/posts/delete/${id}", method="POST">
     <div class="form-group">
         <label for="title">Title</label>
         <input id="title" type="text" class="form-control" id="exampleInputEmail1"  name="title"
