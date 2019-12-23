@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class PostsHandler {
-    @RequestMapping(value = {"/","/posts"}, method= RequestMethod.GET)
+    @RequestMapping(value = "/", method= RequestMethod.GET)
     public ModelAndView getBlogPosts(){
 
        List<Posts> allPosts = PostsService.getAllPosts();
@@ -29,10 +29,19 @@ public class PostsHandler {
     }
 
     @RequestMapping("/addPost")
-    public String addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
+    public ModelAndView addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
-        PostsService.addPost(title, content);
-        return "redirect:/";
+        Long post_id = PostsService.addPost(title, content);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("createPost");
+        modelAndView.addObject("postCreated","true");
+        modelAndView.addObject("title",title);
+        modelAndView.addObject("heading","Post created");
+        modelAndView.addObject("id",post_id);
+        modelAndView.addObject("customAction","postCreated");
+
+        return modelAndView;
     }
 
     @RequestMapping(value = "/posts/{id}",method = RequestMethod.GET)
@@ -48,16 +57,13 @@ public class PostsHandler {
 
     @RequestMapping(value = "delete/deletes/{id}")
     public String deletePost(@PathVariable("id") Long id){
-        System.out.println("DELETEDDDDDDDDDDDDd");
         PostsService.deletePost(id);
-
         return  "redirect:/";
 
     }
 
     @RequestMapping(value = "update/updates/{id}")
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
-        System.out.println("In posts handler ======== saving post =  === " );
         PostsService.updatePost(id, title, content);
         return "redirect:/posts/{id}";
     }

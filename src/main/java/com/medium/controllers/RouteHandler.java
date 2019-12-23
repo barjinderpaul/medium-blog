@@ -34,15 +34,13 @@ public class RouteHandler {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println("====== in /update/{id} route ========");
         modelAndView.setViewName("createPost");
         modelAndView.addObject("heading","Update Post");
+        modelAndView.addObject("customAction","updatePost");
         modelAndView.addObject("content","some-sample-content");
         modelAndView.addObject("id",postId);
         modelAndView.addObject("content",content);
         modelAndView.addObject("title",title);
-        System.out.println("TITLE=               === = = == == = " + title);
-        System.out.println("////////////// Content = " + content);
 
 
         return modelAndView;
@@ -62,11 +60,8 @@ public class RouteHandler {
         modelAndView.addObject("customAction","addPost");
         modelAndView.addObject("id",postId);
         modelAndView.addObject("content",content);
-//        modelAndView.addObject()
         modelAndView.addObject("title",title);
 
-        System.out.println("Title = " + title);
-        System.out.println("Content = " + content);
 
         return modelAndView;
     }

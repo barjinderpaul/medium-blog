@@ -37,9 +37,11 @@ public class PostsService {
         return post;
     }
 
-    public static void addPost(String title, String content) {
+    public static Long addPost(String title, String content) {
         content = content.trim();
         title = title.trim();
+
+        Long post_id ;
 
         Posts post = new Posts();
         post.setTitle(title);
@@ -49,9 +51,11 @@ public class PostsService {
         Transaction t = session.beginTransaction();
 
         session.save(post);
-
+        post_id = post.getId();
         t.commit();
         session.close();
+
+        return post_id;
     }
 
     public static void deletePost(Long id){

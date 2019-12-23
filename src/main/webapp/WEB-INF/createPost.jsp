@@ -44,19 +44,15 @@
         </ul>
     </div>
 </nav>
+<br>
 
+<h1>${heading}</h1><br>
 
-<h1>${heading}</h1>
-
-<%--<form action="add">--%>
-<%--    <label for="title">--%>
-<%--        <input id="title" type="text" name="title" required>--%>
-<%--    </label><br>--%>
-<%--    <label for="content"><br>--%>
-<%--        <input id="content" type="text" name="content" required>--%>
-<%--    </label>--%>
-<%--    <input type="submit" value="Publish">--%>
-<%--</form>--%>
+<c:if test="${customAction == 'postCreated'}">
+    <div class="alert alert-success" role="alert">
+        <p>Post created : ${title} &nbsp; <a class="btn btn-primary" href="/medium/posts/${id}">Go to Post</a> </p>
+    </div>
+</c:if>
 
 <form action= "<c:choose>
     <c:when test="${customAction == 'addPost'}">
@@ -70,16 +66,16 @@ method="post">
 <div class="form-group">
     <label for="title">Title</label>
     <input id="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title" name="title"
-           required value="<c:if test="${customAction != 'addPost'}">${title}</c:if>">
+           required value="<c:if test="${customAction == 'updatePost'}">${title}</c:if>">
     <small id="emailHelp" class="form-text text-muted">First 50 characters from content will be displayed as
         excerpt.</small>
 </div>
 
 <div class="md-form">
     <label for="content">Enter content</label>
-    <textarea id="content" class="md-textarea form-control" rows="10" name="content" required><c:if test="${customAction != 'addPost'}">${fn:trim(content)}</c:if></textarea>
+    <textarea id="content" placeholder="Enter content" class="md-textarea form-control" rows="10" name="content" required><c:if test="${customAction != 'addPost'}">${fn:trim(content)}</c:if></textarea>
 </div>
-<button type="submit" class="btn btn-primary">Publish Content</button>
+<button type="submit" class="btn btn-primary">Save Post</button>
 </form>
 
 
