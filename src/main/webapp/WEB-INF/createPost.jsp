@@ -54,15 +54,12 @@
     </div>
 </c:if>
 
-<form action= "<c:choose>
-    <c:when test="${customAction == 'addPost' || customAction == 'postCreated'}">
-        add
-    </c:when>
-    <c:otherwise>
-        /medium/posts/update/${id}
-    </c:otherwise>
-</c:choose>"
-method="post">
+<form action= "
+    <c:choose>
+        <c:when test="${customAction == 'addPost' || customAction == 'postCreated'}"> add </c:when>
+        <c:otherwise> /medium/posts/update/${id} </c:otherwise>
+    </c:choose>"
+    method="post">
 <div class="form-group">
     <label for="title">Title</label>
     <input id="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title" name="title"

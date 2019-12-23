@@ -58,7 +58,7 @@
             <div class="card-body bg-light">
                 <p class="card-text">
                     <c:choose>
-                        <c:when test = "${list.content.length() < 50}"> ${list.content} </c:when>
+                        <c:when test = "${list.content.length() < 77}"> ${list.content} </c:when>
                         <c:otherwise> ${fn:substring(list.content,0,77)} <span>...</span> </c:otherwise>
                     </c:choose>
                 </p>
