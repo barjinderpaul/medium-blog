@@ -29,12 +29,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
-                <a class="nav-link" href="./">
+                <a class="nav-link" href="/medium">
                     <p>Home</p>
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="add">
+                <a class="nav-link" href="/medium/add">
                     <p>Create Post</p>
                 </a>
             </li>

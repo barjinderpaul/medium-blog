@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -31,12 +32,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
-                <a class="nav-link" href="./">
+                <a class="nav-link" href="/medium">
                     <p>Home</p>
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/medium/add">
                     <p>Create Post</p>
                 </a>
             </li>
@@ -45,7 +46,17 @@
 </nav>
 
 <form action="./deletes/${id}">
-    <input type="submit" value="Delete Post? You sure?">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" type="text" class="form-control" id="exampleInputEmail1"  name="title"
+                value="${title}" disabled >
+    </div>
+    <div class="md-form">
+        <label for="content">Enter content</label>
+        <textarea id="content" class="md-textarea form-control" rows="10" name="content" required disabled>${content}</textarea>
+    </div>
+    <br>
+    <input class="btn btn-danger" type="submit" value="Delete Post? You sure?">
 </form>
 
 </body>

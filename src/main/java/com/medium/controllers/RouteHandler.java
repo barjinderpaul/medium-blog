@@ -19,36 +19,55 @@ public class RouteHandler {
     public ModelAndView redirectToCreatePost(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("createPost");
+        modelAndView.addObject("heading","Add Post");
         modelAndView.addObject("customAction","addPost");
         return modelAndView;
     }
 
     @RequestMapping(value = "/update/{id}")
-    public String redirectToUpdatePost( @PathVariable("id") String id) {
+    public ModelAndView redirectToUpdatePost( @PathVariable("id") String id) {
         Long postId = Long.parseLong(id);
 
         Posts post = PostsService.getPost(postId);
         String content = post.getContent();
         String title = post.getTitle();
 
+
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println("====== in /update/{id} route ========");
         modelAndView.setViewName("createPost");
+        modelAndView.addObject("heading","Update Post");
         modelAndView.addObject("content","some-sample-content");
         modelAndView.addObject("id",postId);
         modelAndView.addObject("content",content);
         modelAndView.addObject("title",title);
         System.out.println("TITLE=               === = = == == = " + title);
+        System.out.println("////////////// Content = " + content);
 
-        return "createPost";
+
+        return modelAndView;
     }
 
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView redirectToDeletePage(@PathVariable("id") String id){
         Long postId = Long.parseLong(id);
+
+        Posts post = PostsService.getPost(postId);
+        String content = post.getContent();
+        String title = post.getTitle();
+
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("deletePost");
         modelAndView.addObject("customAction","addPost");
         modelAndView.addObject("id",postId);
+        modelAndView.addObject("content",content);
+//        modelAndView.addObject()
+        modelAndView.addObject("title",title);
+
+        System.out.println("Title = " + title);
+        System.out.println("Content = " + content);
+
         return modelAndView;
     }
 

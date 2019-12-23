@@ -11,26 +11,16 @@ import java.util.List;
 
 public class PostsService {
 
-
     static Configuration configuration = new Configuration().configure().addAnnotatedClass(Posts.class);
     static SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-
 
     public static List<Posts> getAllPosts(){
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
         List<Posts> allPosts = session.createQuery("SELECT a FROM com.medium.Model.Posts a", Posts.class).getResultList();
 
-//working single get and single save
-//        Posts post2 = session.get(Posts.class,1L);
-
-        t.commit();//transaction is commited
+        t.commit();
         session.close();
-
-//        allPosts.forEach((postss)->{
-//            System.out.println("Title = " + postss.getTitle() + "\nContent = " + postss.getContent());
-//        });
 
         return allPosts;
     }
@@ -48,14 +38,19 @@ public class PostsService {
     }
 
     public static void addPost(String title, String content) {
+        content = content.trim();
+        title = title.trim();
+
         Posts post = new Posts();
         post.setTitle(title);
         post.setContent(content);
 
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
+
         session.save(post);
-        t.commit();//transaction is commited
+
+        t.commit();
         session.close();
     }
 
@@ -65,8 +60,8 @@ public class PostsService {
 
         Posts post = session.load(Posts.class, id);
         session.delete(post);
-        t.commit();
 
+        t.commit();
         session.close();
 
     }
@@ -76,12 +71,12 @@ public class PostsService {
         Transaction t = session.beginTransaction();
 
         Posts post = session.get(Posts.class,id);
+
         post.setTitle(title);
         post.setContent(content);
         session.merge(post);
+
         t.commit();
         session.close();
-
     }
-
 }

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -31,7 +32,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
-                <a class="nav-link" href="./">
+                <a class="nav-link" href="/medium">
                     <p>Home</p>
                 </a>
             </li>
@@ -45,7 +46,7 @@
 </nav>
 
 
-<h1>Add post</h1>
+<h1>${heading}</h1>
 
 <%--<form action="add">--%>
 <%--    <label for="title">--%>
@@ -76,7 +77,7 @@ method="post">
 
 <div class="md-form">
     <label for="content">Enter content</label>
-    <textarea id="content" class="md-textarea form-control" rows="3" name="content" required></textarea>
+    <textarea id="content" class="md-textarea form-control" rows="10" name="content" required><c:if test="${customAction != 'addPost'}">${fn:trim(content)}</c:if></textarea>
 </div>
 <button type="submit" class="btn btn-primary">Publish Content</button>
 </form>

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ page import="com.medium.Model.Posts" %>
 <%@ page import="java.util.Arrays" %><%--
@@ -55,7 +56,12 @@
                 ${list.title}
             </div>
             <div class="card-body bg-light">
-                <p class="card-text">${list.content}</p>
+                <p class="card-text">
+                    <c:choose>
+                        <c:when test = "${list.content.length() < 50}"> ${list.content} </c:when>
+                        <c:otherwise> ${fn:substring(list.content,0,77)} <span>...</span> </c:otherwise>
+                    </c:choose>
+                </p>
                 <a href="posts/${list.id}" class="btn btn-primary">Read More</a>
                 <a href="update/${list.id}" class="btn btn-warning">Edit Post</a>
                 <a href="delete/${list.id}" class="btn btn-danger">Delete Post</a>
