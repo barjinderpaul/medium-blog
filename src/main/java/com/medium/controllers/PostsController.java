@@ -1,7 +1,8 @@
 package com.medium.controllers;
 
 import com.medium.Model.Post;
-import com.medium.services.PostsService;
+import com.medium.services.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,15 @@ import java.util.List;
 
 @Controller
 public class PostsController {
+
+    @Autowired
+    PostService postService;
+
     @RequestMapping(value = {"/","/posts"}, method= RequestMethod.GET)
     public ModelAndView getBlogPosts(){
 
-       List<Post> allPosts = PostsService.getAllPosts();
-
+       List<Post> allPosts = postService.getAllPosts();
+        System.out.println("====================== posts  =   " + allPosts);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("blogPosts");
         modelAndView.addObject("name","Hello mvc");
@@ -40,7 +45,7 @@ public class PostsController {
     @RequestMapping(value = "posts/add",method = RequestMethod.POST)
     public ModelAndView addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
 
-        Long post_id = PostsService.addPost(title, content);
+        Long post_id = postService.addPost(title,content);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("createPost");
@@ -56,8 +61,7 @@ public class PostsController {
     @RequestMapping(value = "posts/{id}",method = RequestMethod.GET)
     public ModelAndView getPost(@PathVariable("id") Long id) {
 
-        Post post = PostsService.getPost(id);
-
+       Post post = postService.getPost(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("singlePost");
         modelAndView.addObject("post",post);
@@ -70,7 +74,8 @@ public class PostsController {
     public ModelAndView redirectToDeletePage(@PathVariable("id") String id){
         Long postId = Long.parseLong(id);
 
-        Post post = PostsService.getPost(postId);
+        Post post = postService.getPost(postId);
+
         String content = post.getContent();
         String title = post.getTitle();
 
@@ -86,7 +91,7 @@ public class PostsController {
 
     @RequestMapping(value = "posts/delete/{id}",method = RequestMethod.POST)
     public String deletePost(@PathVariable("id") Long id) {
-        PostsService.deletePost(id);
+        postService.deletePost(id);
         return "redirect:/";
 
     }
@@ -95,7 +100,7 @@ public class PostsController {
     public ModelAndView redirectToUpdatePost( @PathVariable("id") String id) {
         Long postId = Long.parseLong(id);
 
-        Post post = PostsService.getPost(postId);
+        Post post = postService.getPost(postId);
         String content = post.getContent();
         String title = post.getTitle();
 
@@ -114,7 +119,7 @@ public class PostsController {
     @RequestMapping(value = "posts/update/{id}",method = RequestMethod.POST)
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("content") String content) {
 
-        PostsService.updatePost(id, title, content);
+        postService.updatePost(id,title,content);
         return "redirect:/posts/{id}";
     }
 
