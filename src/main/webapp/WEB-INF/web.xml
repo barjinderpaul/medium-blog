@@ -4,14 +4,4 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>mediumBlog</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>mediumBlog</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
-
 </web-app>
