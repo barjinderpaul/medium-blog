@@ -1,13 +1,14 @@
 package com.medium.services;
-
-import com.medium.DAO.PostDAO;
 import com.medium.Model.Post;
 
+import com.medium.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service("PostService")
@@ -15,25 +16,38 @@ import java.util.List;
 public class PostServiceImplementation implements PostService {
 
     @Autowired
-    private PostDAO postDAO;
+    private PostRepository<Post> postRepository;
 
+    @Transactional
     public List<Post> getAllPosts(){
-        return postDAO.getAllPosts();
+        return (List<Post>) postRepository.findAll();
     }
 
+    @Transactional
     public Post getPost(Long id) {
-        return postDAO.getPost(id);
+        Optional<Post> post = postRepository.findById(id);
+        return post.isPresent() ? post.get() :null;
     }
 
+    @Transactional
     public  Long addPost(String title, String content) {
-        return postDAO.addPost(title,content);
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        return postRepository.save(post).getId();
     }
 
+    @Transactional
     public  void deletePost(Long id){
-        postDAO.deletePost(id);
+        postRepository.deleteById(id);
     }
 
+    @Transactional
     public  void updatePost(Long id, String title, String content) {
-        postDAO.updatePost(id,title,content);
+        Post post = new Post();
+        post.setContent(content);
+        post.setId(id);
+        post.setTitle(title);
+        postRepository.save(post);
     }
 }

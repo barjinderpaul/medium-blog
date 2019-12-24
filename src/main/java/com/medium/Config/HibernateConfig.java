@@ -1,22 +1,21 @@
 package com.medium.Config;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories("com.medium.repository")
 @ComponentScan({ "com.medium.Config" })
 @PropertySource(value = { "classpath:database.properties" })
 public class HibernateConfig {
@@ -28,14 +27,15 @@ public class HibernateConfig {
     private final String PROPERTY_DIALECT = "hibernate.dialect";
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.medium.Model" });
-        sessionFactory.setHibernateProperties(hibernateProps());
-
-        return sessionFactory;
+    LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean lfb = new LocalContainerEntityManagerFactoryBean();
+        lfb.setDataSource(dataSource());
+        lfb.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        lfb.setPackagesToScan("com.medium.Model");
+        lfb.setJpaProperties(hibernateProps());
+        return lfb;
     }
+
 
     @Bean
     DataSource dataSource() {
@@ -55,17 +55,10 @@ public class HibernateConfig {
     }
 
     @Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-
-        HibernateTransactionManager txManager = new HibernateTransactionManager();
-        txManager.setSessionFactory(sessionFactory);
-
-        return txManager;
+    JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
     }
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
 }
