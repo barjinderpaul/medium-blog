@@ -18,18 +18,15 @@ public class PostServiceImplementation implements PostService {
     @Autowired
     private PostRepository<Post> postRepository;
 
-    @Transactional
     public List<Post> getAllPosts(){
         return postRepository.findAllByOrderByIdAsc();
     }
 
-    @Transactional
     public Post getPost(Long id) {
         Optional<Post> post = postRepository.findById(id);
         return post.isPresent() ? post.get() :null;
     }
 
-    @Transactional
     public  Long addPost(String title, String content) {
         Post post = new Post();
         post.setTitle(title);
@@ -37,12 +34,10 @@ public class PostServiceImplementation implements PostService {
         return postRepository.save(post).getId();
     }
 
-    @Transactional
     public  void deletePost(Long id){
         postRepository.deleteById(id);
     }
 
-    @Transactional
     public  void updatePost(Long id, String title, String content) {
         Post post = new Post();
         post.setContent(content);
