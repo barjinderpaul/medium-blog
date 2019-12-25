@@ -20,7 +20,7 @@ public class PostServiceImplementation implements PostService {
 
     @Transactional
     public List<Post> getAllPosts(){
-        return (List<Post>) postRepository.findAll();
+        return postRepository.findAllByOrderByIdAsc();
     }
 
     @Transactional

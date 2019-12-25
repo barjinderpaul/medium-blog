@@ -13,18 +13,15 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+import static com.medium.CONSTANTS.ENV.*;
+import static com.medium.CONSTANTS.ENV.PROPERTY_SHOW_SQL;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("com.medium.repository")
 @ComponentScan({ "com.medium.Config" })
 @PropertySource(value = { "classpath:database.properties" })
 public class HibernateConfig {
-    private final String PROPERTY_DRIVER = "driver";
-    private final String PROPERTY_URL = "url";
-    private final String PROPERTY_USERNAME = "user";
-    private final String PROPERTY_PASSWORD = "password";
-    private final String PROPERTY_SHOW_SQL = "hibernate.show_sql";
-    private final String PROPERTY_DIALECT = "hibernate.dialect";
 
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -39,18 +36,22 @@ public class HibernateConfig {
 
     @Bean
     DataSource dataSource() {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setUrl("jdbc:postgresql://localhost:5432/medium");
-        ds.setUsername("postgres");
-        ds.setPassword("123456");
-        ds.setDriverClassName("org.postgresql.Driver");
-        return ds;
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+
+        driverManagerDataSource.setUrl(DB_URL.value);
+        driverManagerDataSource.setUsername(DB_USERNAME.value);
+        driverManagerDataSource.setPassword(DB_PASSWORD.value);
+        driverManagerDataSource.setDriverClassName(DB_DRIVER_CLASS_NAME.value);
+
+        return driverManagerDataSource;
     }
 
     Properties hibernateProps() {
         Properties properties = new Properties();
-        properties.setProperty(PROPERTY_DIALECT,"org.hibernate.dialect.PostgreSQL82Dialect");
-        properties.setProperty(PROPERTY_SHOW_SQL,"true");
+
+        properties.setProperty(PROPERTY_DIALECT.value,DB_DIALECT.value);
+        properties.setProperty(PROPERTY_SHOW_SQL.value,DB_SHOW_SQL.value);
+
         return properties;
     }
 
