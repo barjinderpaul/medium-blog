@@ -27,14 +27,15 @@ import static com.medium.CONSTANTS.CONSTANTS.VIEWS_EXTENSION;
 @EnableWebMvc
 @ComponentScan({"com.medium"})
 public class Config {
+
     @Bean
     public InternalResourceViewResolver viewResolver() {
+
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
         internalResourceViewResolver.setPrefix(PREFIX_FOR_VIEWS.value);
         internalResourceViewResolver.setSuffix(VIEWS_EXTENSION.value);
 
         return internalResourceViewResolver;
     }
-
 }
 

@@ -20,17 +20,18 @@ import static com.medium.CONSTANTS.ENV.PROPERTY_SHOW_SQL;
 @EnableTransactionManagement
 @EnableJpaRepositories("com.medium.repository")
 @ComponentScan({ "com.medium.Config" })
-@PropertySource(value = { "classpath:database.properties" })
-public class HibernateConfig {
+public class SpringDataJPAConfig {
 
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean lfb = new LocalContainerEntityManagerFactoryBean();
-        lfb.setDataSource(dataSource());
-        lfb.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        lfb.setPackagesToScan("com.medium.Model");
-        lfb.setJpaProperties(hibernateProps());
-        return lfb;
+
+        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        localContainerEntityManagerFactoryBean.setDataSource(dataSource());
+        localContainerEntityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        localContainerEntityManagerFactoryBean.setPackagesToScan("com.medium.Model");
+        localContainerEntityManagerFactoryBean.setJpaProperties(hibernateProps());
+
+        return localContainerEntityManagerFactoryBean;
     }
 
 
