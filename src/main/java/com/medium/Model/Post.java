@@ -5,10 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "posts")
 public class Post {
-
-    public Post(){
-
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", updatable = false, nullable = false)

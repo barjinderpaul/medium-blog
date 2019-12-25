@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class PostsController {
+public class PostController {
 
     @Autowired
     PostService postService;
@@ -22,13 +22,13 @@ public class PostsController {
     public ModelAndView getBlogPosts(){
 
        List<Post> allPosts = postService.getAllPosts();
-        System.out.println("====================== posts  =   " + allPosts);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("blogPosts");
-        modelAndView.addObject("name","Hello mvc");
-        modelAndView.addObject("allPosts",allPosts);
 
-        return modelAndView;
+       ModelAndView modelAndView = new ModelAndView();
+       modelAndView.setViewName("blogPosts");
+       modelAndView.addObject("name","Hello mvc");
+       modelAndView.addObject("allPosts",allPosts);
+
+       return modelAndView;
     }
 
     @RequestMapping(value = "posts/add",method = RequestMethod.GET)
@@ -62,11 +62,12 @@ public class PostsController {
     public ModelAndView getPost(@PathVariable("id") Long id) {
 
        Post post = postService.getPost(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("singlePost");
-        modelAndView.addObject("post",post);
 
-        return modelAndView;
+       ModelAndView modelAndView = new ModelAndView();
+       modelAndView.setViewName("singlePost");
+       modelAndView.addObject("post",post);
+
+       return modelAndView;
     }
 
 
