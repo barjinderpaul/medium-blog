@@ -20,19 +20,22 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+import static com.medium.CONSTANTS.CONSTANTS.PREFIX_FOR_VIEWS;
+import static com.medium.CONSTANTS.CONSTANTS.VIEWS_EXTENSION;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan({"com.medium"})
 public class Config {
+
     @Bean
     public InternalResourceViewResolver viewResolver() {
+
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-        internalResourceViewResolver.setPrefix("/WEB-INF/");
-        internalResourceViewResolver.setSuffix(".jsp");
+        internalResourceViewResolver.setPrefix(PREFIX_FOR_VIEWS.value);
+        internalResourceViewResolver.setSuffix(VIEWS_EXTENSION.value);
 
-        return  internalResourceViewResolver;
+        return internalResourceViewResolver;
     }
-
 }
 
